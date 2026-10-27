@@ -2,11 +2,13 @@
 
 using namespace std;
 
+const double EPSILON = 0.00001;
+
 int main() {
-	float a, b, c;
+	double a, b, c;
 
 	cin >> a >> b >> c;
-	if (a <= 0 || b <= 0 || c <= 0) {
+	if (a <= EPSILON || b <= EPSILON || c <= EPSILON) {
 		cerr << "error: bad side length" << endl;
 		return 0;
 	}
@@ -20,19 +22,23 @@ int main() {
 		return 0;
 	}
 
-	if (a == b && b == c) {
+	bool a_eq_b = (a - b > -EPSILON && a - b < EPSILON);
+	bool b_eq_c = (b - c > -EPSILON && b - c < EPSILON);
+	bool c_eq_a = (a - c > -EPSILON && a - c < EPSILON);
+
+	if (a_eq_b && b_eq_c) {
 		cout << "Equilateral" << endl;
 		cout << "Acute" << endl;
 		return 0;
 	}
-	else if (a == b || b == c || c == a) {
+	else if (a_eq_b || b_eq_c || c_eq_a) {
 		cout << "Isosceles" << endl;
 	}
 	else {
 		cout << "Scalene" << endl;
 	}
 
-	float left, right;
+	double left, right;
 
 	if (a > b && a > c) {
 		left = a * a;
@@ -47,7 +53,7 @@ int main() {
 		right = a * a + b * b;
 	}
 
-	if (left == right) {
+	if (left - right > -EPSILON && left - right < EPSILON) {
 		cout << "Right" << endl;
 	}
 	else if (left < right) {
