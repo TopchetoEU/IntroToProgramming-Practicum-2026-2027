@@ -13,7 +13,7 @@ int main() {
 	long sum = 0;
 
 	// Not the best solution...
-	for (long i = 1; i < num; i++) {
+	for (long i = 1; i < num / 2; i++) {
 		if (num % i == 0) sum += i;
 	}
 
