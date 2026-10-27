@@ -2,24 +2,29 @@
 
 using namespace std;
 
-int main() {
-	long a, b, c;
+const double EPSILON = 0.0001;
 
-	cin >> a >> b >> c;
-	if (a <= 0 || b <= 0 || c <= 0) {
-		cerr << "error: bad side length" << endl;
-		return 0;
-	}
+int main() {
+	double x, y;
+	cin >> x >> y;
 
 	if (
-		a + b > c &&
-		b + c > a &&
-		c + a > b
+		x < EPSILON && x > -EPSILON ||
+		y < EPSILON && y > -EPSILON
 	) {
-		cout << "yes" << endl;
+		cout << "On axis" << endl;
+	}
+	else if (x > 0 && y > 0) {
+		cout << "First" << endl;
+	}
+	else if (x < 0 && y > 0) {
+		cout << "Second" << endl;
+	}
+	else if (x < 0 && y < 0) {
+		cout << "Third" << endl;
 	}
 	else {
-		cout << "no" << endl;
+		cout << "Fourth" << endl;
 	}
 
 	return 0;
