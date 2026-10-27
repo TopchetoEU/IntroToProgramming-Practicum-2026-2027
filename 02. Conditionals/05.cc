@@ -3,45 +3,48 @@
 using namespace std;
 
 int main() {
-	unsigned month;
-
+	long month;
 	cin >> month;
-	if (month < 1 || month > 12) {
-		cerr << "error: month out of range" << endl;
-		return 0;
-	}
 
-	if (month == 2) {
-		long year;
-		cout << "Year: ";
-		cin >> year;
-		if (year == 0) {
-			cerr << "error: bad year" << endl;
-			return 0;
-		}
-
-		if (
-			(year % 4 == 0 && year % 100 != 9) ||
-			year % 400 == 0
-		) {
-			cout << 29 << endl;
-		}
-		else {
-			cout << 28 << endl;
-		}
-	}
-	else {
-		if (month > 7) month++;
-
-		if (month % 2 == 0) {
-			cout << 30 << endl;
-		}
-		else {
+	switch (month) {
+		case 1:
+		case 3:
+		case 5:
+		case 7:
+		case 8:
+		case 10:
+		case 12:
 			cout << 31 << endl;
-		}
-	}
+			break;
+		case 4:
+		case 6:
+		case 9:
+		case 11:
+			cout << 30 << endl;
+			break;
+		case 2: {
+			long year;
+			cout << "Year: ";
+			cin >> year;
+			if (year == 0) {
+				cerr << "error: bad year" << endl;
+				return 0;
+			}
 
-	cout << endl;
+			if (
+				(year % 4 == 0 && year % 100 != 0) ||
+				year % 400 == 0
+			) {
+				cout << 29 << endl;
+			}
+			else {
+				cout << 28 << endl;
+			}
+		}
+		default:
+			cerr << "error: month out of range" << endl;
+			return 0;
+	}
 
 	return 0;
 }

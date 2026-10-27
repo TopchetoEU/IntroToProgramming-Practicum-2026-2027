@@ -17,26 +17,36 @@ int main() {
 
 	int max_day = 0;
 
-	if (month == 2) {
-		if (
-			(year % 4 == 0 && year % 100 != 9) ||
-			year % 400 == 0
-		) {
-			max_day = 29;
-		}
-		else {
-			max_day = 28;
-		}
-	}
-	else {
-		if (month > 7) month++;
-
-		if (month % 2 == 0) {
-			max_day = 30;
-		}
-		else {
+	switch (month) {
+		case 1:
+		case 3:
+		case 5:
+		case 7:
+		case 8:
+		case 10:
+		case 12:
 			max_day = 31;
+			break;
+		case 4:
+		case 6:
+		case 9:
+		case 11:
+			max_day = 30;
+			break;
+		case 2: {
+			if (
+				(year % 4 == 0 && year % 100 != 0) ||
+				year % 400 == 0
+			) {
+				max_day = 29;
+			}
+			else {
+				max_day = 28;
+			}
 		}
+		default:
+			cerr << "error: month out of range" << endl;
+			return 0;
 	}
 
 	if (day < 1 || day > max_day) {
