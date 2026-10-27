@@ -3,11 +3,11 @@
 using namespace std;
 
 int main() {
-	long a, x, y;
+	long side_width, x, y;
 
-	cin >> a >> x >> y;
+	cin >> side_width >> x >> y;
 
-	if (a <= 0) {
+	if (side_width <= 0) {
 		cerr << "error: invalid side length for 'a'" << endl;
 		return 0;
 	}
@@ -21,8 +21,8 @@ int main() {
 	}
 
 	if (
-		((x / a) % 2 == 0) ^
-		((y / a) % 2 == 0)
+		((x / side_width) % 2 == 0) ^
+		((y / side_width) % 2 == 0)
 	) {
 		cout << "white" << endl;
 	}
